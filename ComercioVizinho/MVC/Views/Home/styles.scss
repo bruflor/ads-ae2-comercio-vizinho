@@ -50,13 +50,14 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  padding:32px;
+  padding:1px;
+  margin-top: 64px;
 }
 
 .highlight-box {
   background: #ffffffdd;
   padding: 32px;
   border-radius: 8px;
-  height: 368px;
-  margin-left:56px;
+  min-height: 368px;
+  margin:56px;
 }
