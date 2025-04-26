@@ -48,16 +48,26 @@
         <h2 class="text-center fw-bold text-secondary-900">Produtos</h2>
         <p class="text-center">Colheita da vizinhança. Alimentos cultivados com carinho na sua região</p>
 
-        <nav class="">
-            <ul>
-                <li>Todos</li>
-                <li>Excedentes Agrícolas</li>
-                <li>Desperdício Zero</li>
-            </ul>
-        </nav>
-
-        <div class="row">
-            <div class="col-sm-6">
+        <div class="row justify-content-start mt-5">
+            <div class="col">
+                <div class="card p-0 rounded-3 overflow-hidden" style="width: 18rem;">
+                    <div class="card-img-top product-image"
+                         style="background-image: url('images/product-placeholder.jpg')"></div>
+                    <div class="card-body p-4">
+                        <h5 class="fs-3 text-secondary-900 fw-bold mb-0">Product name</h5>
+                        <p class="card-text fs-6">Productor Tal</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h6 class="col-auto fs-2 text-primary my-0 fw-bold py-0">00,00 €</h6>
+                            <button
+                                class="btn btn-primary rounded-circle d-flex align-items-center justify-content-center text-white p-0 fs-2 fw-bold"
+                                style="width: 48px; height: 48px;">
+                                +
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <div class="col">
                 <div class="card p-0 rounded-3 overflow-hidden" style="width: 18rem;">
                     <div class="card-img-top product-image"
                          style="background-image: url('images/product-placeholder.jpg')"></div>
@@ -75,6 +85,42 @@
                     </div>
                 </div>
             </div>
+            <div class="col">
+                <div class="card p-0 rounded-3 overflow-hidden" style="width: 18rem;">
+                    <div class="card-img-top product-image"
+                         style="background-image: url('images/product-placeholder.jpg')"></div>
+                    <div class="card-body p-4">
+                        <h5 class="fs-3 text-secondary-900 fw-bold mb-0">Product name</h5>
+                        <p class="card-text fs-6">Productor Tal</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h6 class="col-auto fs-2 text-primary my-0 fw-bold py-0">00,00 €</h6>
+                            <button
+                                class="btn btn-primary rounded-circle d-flex align-items-center justify-content-center text-white p-0 fs-2 fw-bold"
+                                style="width: 48px; height: 48px;">
+                                +
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div> <div class="col">
+                <div class="card p-0 rounded-3 overflow-hidden" style="width: 18rem;">
+                    <div class="card-img-top product-image"
+                         style="background-image: url('images/product-placeholder.jpg')"></div>
+                    <div class="card-body p-4">
+                        <h5 class="fs-3 text-secondary-900 fw-bold mb-0">Product name</h5>
+                        <p class="card-text fs-6">Productor Tal</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h6 class="col-auto fs-2 text-primary my-0 fw-bold py-0">00,00 €</h6>
+                            <button
+                                class="btn btn-primary rounded-circle d-flex align-items-center justify-content-center text-white p-0 fs-2 fw-bold"
+                                style="width: 48px; height: 48px;">
+                                +
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
         </div>
 
         <div class="row justify-content-center mt-5">
@@ -103,11 +149,13 @@
         </div>
     </div>
 
-    @* CATEGORIAS *@
+    @* Categories *@
     <div class="container pb-5 mt-5">
-        <h2 class="mb-0 text-secondary fs-3">Categorias</h2>
-        <p>Explore os nossos produtos por categoria e encontre tudoo que você precisa</p>
-        
+        <div class="col-6 offset-md-3">
+            <h2 class="mb-0 text-secondary fs-3 text-center">Categorias</h2>
+            <p class="text-center">Explore os nossos produtos por categoria e encontre tudoo que você precisa</p>
+        </div>
+
         <div class="row mt-2 gx-3 category-cards">
             <div class="col-12 col-md-6">
                 <div style="background-image: url('images/banner-image.png');">
@@ -124,11 +172,8 @@
                     <button class="btn btn-primary rounded-5 text-white w-auto">LATICÍNIOS</button>
                 </div>
             </div>
-            
-            
-            
         </div>
-        
+
         <div class="mt-5 d-flex gap-3 flex-wrap justify-content-center">
             <button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">LEGUMES</button>
             <button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">GRÃOS E CEREAIS</button>
