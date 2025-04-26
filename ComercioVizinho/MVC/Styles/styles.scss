@@ -5,3 +5,7 @@
 
 //Bootstrap
 @import "/home/brunaflor/.nuget/packages/bootstrap.sass/5.3.5/contentFiles/any/any/wwwroot/scss/bootstrap.scss";
+
+*body{
+  background: tint-color($primary, 90%)
+}
