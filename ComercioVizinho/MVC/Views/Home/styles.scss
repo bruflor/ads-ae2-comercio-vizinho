@@ -12,17 +12,51 @@
   background-image: url("../images/hero-image.png");
   background-size: cover;
   background-position-x: right;
+  position: relative;
 
-  & .title {
+  .title {
     font-family: "Kaushan Script", sans-serif;
     font-weight: normal;
     font-size: 97px;
-  }
+    position: relative;
+    width:fit-content;
 
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      right: -72px;
+      top: 8px;
+      height: 100%; 
+      width: 92px;
+      z-index: 1;
+      background-image: url("../images/isologo.svg");
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+  }
 }
 
-.product-image{
+.product-image {
   width: auto;
   height: 216px;
   background-size: cover;
+}
+
+.ads-banner {
+  width: 100%;
+  border-radius: 8px;
+  background-image: url("../images/banner-image.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding:32px;
+}
+
+.highlight-box {
+  background: #ffffffdd;
+  padding: 32px;
+  border-radius: 8px;
+  height: 368px;
+  margin-left:56px;
 }
