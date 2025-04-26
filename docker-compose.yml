@@ -1,0 +1,30 @@
+version: "3.8"
+services:
+  cv_db:
+    image: postgres
+    container_name: "comercio_vizinho_pgdb"
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - comercio_vizinho_pgdb:/var/lib/postgresql/data
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+      POSTGRES_USERNAME: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+  cv_pgadmin:
+    image: dpage/pgadmin4
+    container_name: "cv_pgadmin"
+    restart: always
+    ports:
+      - "8888:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@admin.com"
+      PGADMIN_DEFAULT_PASSWORD: "Jaca#12345"
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    depends_on:
+      - cv_db
+volumes:
+  comercio_vizinho_pgdb:
+  pgadmin-data:
