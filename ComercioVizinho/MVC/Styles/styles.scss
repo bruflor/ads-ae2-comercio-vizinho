@@ -1,10 +1,10 @@
-@import "variables";
+//@import "variables";
 
 //Custom styles
 @import "../Views/Home/styles";
 
 //Bootstrap
-@import "/home/brunaflor/.nuget/packages/bootstrap.sass/5.3.5/contentFiles/any/any/wwwroot/scss/bootstrap.scss";
+@import "../../node_modules/bootstrap/scss/bootstrap";
 
 *body{
   background: tint-color($primary, 90%)
@@ -13,3 +13,4 @@
 *{
   font-family: "Inter", sans-serif;
 }
+
