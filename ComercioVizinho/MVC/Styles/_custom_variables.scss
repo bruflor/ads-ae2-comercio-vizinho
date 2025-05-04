@@ -1,8 +1,7 @@
-//TODO: Transform this path to a relative path instead of absolute
-@import "/home/brunaflor/.nuget/packages/bootstrap.sass/5.3.5/contentFiles/any/any/wwwroot/scss/functions.scss";
-@import "/home/brunaflor/.nuget/packages/bootstrap.sass/5.3.5/contentFiles/any/any/wwwroot/scss/variables.scss";
-@import "/home/brunaflor/.nuget/packages/bootstrap.sass/5.3.5/contentFiles/any/any/wwwroot/scss/variables-dark.scss";
-
+@import "../../node_modules/bootstrap/scss/bootstrap";
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/mixins";
+@import "../../node_modules/bootstrap/scss/variables";
 
 $primary: #5FB901;
 
