@@ -2,14 +2,16 @@ namespace MVC.Models;
 
 public class Product
 {
-    public Guid Id { get; set; }
-    public string Name { get; set; }
-    public float Price { get; set; }
-    public int StockLevel { get; set; }
-    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-    public bool IsAvailable { get; set; } = true;
+    public Guid Id { get; init; }
+    public String Name { get; set; }
+    public Double? Price { get; set; } = 0.0; //price must not be float
+    public int? StockLevel { get; set; } = 0;
+    public DateTime CreatedAt { get; init; } = DateTime.UtcNow;
+    public bool? IsAvailable { get; set; } = true;
 
-    public List<Category> Categories { get; set; }
+    public ICollection<Category>? Categories { get; set; }
+    
+    public Guid ProducerId { get; set; }
     public User Producer { get; set; }
 
     public string? Description { get; set; }
