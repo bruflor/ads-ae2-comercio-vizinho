@@ -21,4 +21,8 @@
       <Folder Include="wwwroot\css\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Pages\Shared\Components\ProductCard\Default.cshtml" />
+    </ItemGroup>
+
 </Project>
