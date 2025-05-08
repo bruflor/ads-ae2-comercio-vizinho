@@ -5,7 +5,7 @@ namespace MVC.Components;
 
 public class CategoryCardViewComponent: ViewComponent
 {
-    public IViewComponentResult Invoke(User categories)
+    public IViewComponentResult Invoke(Category categories)
     {
         return View(categories);
     }
