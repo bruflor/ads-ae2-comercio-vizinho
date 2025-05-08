@@ -5,8 +5,8 @@ namespace MVC.Components;
 
 public class ProductCardViewComponent : ViewComponent
 {
-    public IViewComponentResult Invoke(Product product)
+    public IViewComponentResult Invoke(Product products)
     {
-        return View(product);
+        return View(products);
     }
 }

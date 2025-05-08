@@ -1,8 +1,8 @@
-﻿@model IEnumerable<MVC.Models.Product>;
-
-@{
+﻿@{
     Layout = "_HomeLayout";
     ViewData["Title"] = "Comércio Vizinho";
+    var products = ViewData["Products"] as IEnumerable<Product>;
+    var categories = ViewData["Categories"] as IEnumerable<User>;
 }
 
 <div>
@@ -53,9 +53,9 @@
 
 
         <div class="row justify-content-start mt-5">
-            @foreach (var item in Model)
+            @foreach (var product in products!)
             {
-                @await Component.InvokeAsync("ProductCard", item)
+                @await Component.InvokeAsync("ProductCard", product)
             }
         </div>
 
@@ -68,7 +68,6 @@
     @* Ads banner *@
     <div class="container ads-banner">
         <div class="col-12 col-md-6">
-
             <div class="highlight-box d-flex flex-column gap-4">
                 <div class="text-secondary w-100 d-flex justify-content-between">
                     <span class="fs-4">Promoções da Vizinhança</span>
@@ -86,6 +85,11 @@
     </div>
 
     @* Categories *@
+@foreach (var category in categories!)
+    {
+    @await Component.InvokeAsync("CategoryCard", category)
+    }
+
     <div class="container pb-5 mt-5">
         <div class="col-6 offset-md-3">
             <h2 class="text-center fw-bold text-secondary-900">Categorias</h2>
