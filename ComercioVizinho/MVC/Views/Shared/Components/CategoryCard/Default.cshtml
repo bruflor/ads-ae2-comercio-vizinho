@@ -1,4 +1,7 @@
 @model MVC.Models.Category
 
-component category
-<div>@Model.Name</div>
+<div style="width:@Model.getWidth(); overflow:hidden">
+    @Model.Name
+    @Model.Description
+    @Model.Status
+</div>

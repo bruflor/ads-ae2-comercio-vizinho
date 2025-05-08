@@ -3,6 +3,8 @@
     ViewData["Title"] = "Comércio Vizinho";
     var products = ViewData["Products"] as IEnumerable<Product>;
     var categories = ViewData["Categories"] as IEnumerable<Category>;
+
+    var withCounter = 0;
 }
 
 <div>
@@ -85,10 +87,15 @@
     </div>
 
     @* Categories *@
-@foreach (var category in categories!)
+    @foreach (var category in categories!)
     {
-    @await Component.InvokeAsync("CategoryCard", category)
+        var w = 20 + withCounter;
+        category.setWidth($"{w}px");
+
+        @await Component.InvokeAsync("CategoryCard", category)
+        withCounter = withCounter +10;
     }
+
 
     <div class="container pb-5 mt-5">
         <div class="col-6 offset-md-3">
