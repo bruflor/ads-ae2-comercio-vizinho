@@ -18,4 +18,9 @@ public class ProductController: Controller
         ViewData["Products"] = await _context.Products.Include(p => p.Producer).ToListAsync();
         return View();
     }
+    public async Task<IActionResult> Detail(Guid id)
+    {
+        ViewData["Product"] = await _context.Products.FirstOrDefaultAsync(x => x.Id == id);
+        return View();
+    }
 }
