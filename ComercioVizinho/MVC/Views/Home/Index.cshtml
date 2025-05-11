@@ -2,6 +2,7 @@
     Layout = "_HomeLayout";
     ViewData["Title"] = "Comércio Vizinho";
     var products = ViewData["Products"] as IEnumerable<Product>;
+    var productsHighlighted = products.Skip(0).Take(4);
     var categories = ViewData["Categories"] as IEnumerable<Category>;
     var categoriesHighlight = categories.Where(category => 
         category.Name =="Desperdício zero" ||
@@ -59,12 +60,11 @@
         <p class="text-center">Colheita da vizinhança. Alimentos cultivados com carinho na sua região</p>
 
         
-        <div class="row justify-content-start mt-5">
-            @foreach (var product in products!)
+        <div class="row align-content-center mt-5 gy-2">
+            @foreach (var product in productsHighlighted!)
             {
                 @await Component.InvokeAsync("ProductCard", product)
             }
-            
         </div>
 
         <div class="row justify-content-center mt-5">
@@ -93,9 +93,6 @@
     </div>
 
     @* Categories *@
-    
-
-
     <div class="container pb-5 mt-5">
         <div class="col-6 offset-md-3">
             <h2 class="text-center fw-bold text-secondary-900">Categorias</h2>
@@ -118,15 +115,6 @@
             {
                 @await Component.InvokeAsync("CategoryChip", category)
             }
-            @* <button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">LEGUMES</button> *@
-            @* <button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">GRÃOS E CEREAIS</button> *@
-            @* <button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">CARNES E OVOS</button> *@
-            @* <button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">SUSTENTÁVEIS</button> *@
-            @* <button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">FARINHAS E MASSAS</button> *@
-            @* <button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">BEBIDAS</button> *@
-            @* <button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">ORGÂNICOS</button> *@
-            @* <button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">GELEIAS E DOCES</button> *@
-            @* <button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">SAZONAIS</button> *@
         </div>
 
     </div>
