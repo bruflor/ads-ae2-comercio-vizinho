@@ -3,8 +3,12 @@
     ViewData["Title"] = "Comércio Vizinho";
     var products = ViewData["Products"] as IEnumerable<Product>;
     var categories = ViewData["Categories"] as IEnumerable<Category>;
-
-    var withCounter = 0;
+    var categoriesHighlight = categories.Where(category => 
+        category.Name =="Desperdício zero" ||
+        category.Name == "Frutas" ||
+        category.Name == "Laticínios"
+        ).OrderBy(x => x.Name);
+    
 }
 
 <div>
@@ -47,18 +51,19 @@
         </div>
 
     </header>
-
+    
     @* Products *@
     <div class="container mt-5">
         <h2 class="text-center fw-bold text-secondary-900">Produtos</h2>
         <p class="text-center">Colheita da vizinhança. Alimentos cultivados com carinho na sua região</p>
 
-
+        
         <div class="row justify-content-start mt-5">
             @foreach (var product in products!)
             {
                 @await Component.InvokeAsync("ProductCard", product)
             }
+            
         </div>
 
         <div class="row justify-content-center mt-5">
@@ -87,14 +92,7 @@
     </div>
 
     @* Categories *@
-    @foreach (var category in categories!)
-    {
-        var w = 20 + withCounter;
-        category.setWidth($"{w}px");
-
-        @await Component.InvokeAsync("CategoryCard", category)
-        withCounter = withCounter +10;
-    }
+    
 
 
     <div class="container pb-5 mt-5">
@@ -104,21 +102,14 @@
         </div>
 
         <div class="row mt-2 gx-3 category-cards">
-            <div class="col-12 col-md-6">
-                <div style="background-image: url('images/banner-image.png');">
-                    <button class="btn btn-primary rounded-5 text-white w-auto">DESPERDÍCIO ZERO</button>
-                </div>
-            </div>
-            <div class="col-12 col-md-3">
-                <div style="background-image: url('images/banner-image.png');">
-                    <button class="btn btn-primary rounded-5 text-white w-auto">FRUTAS</button>
-                </div>
-            </div>
-            <div class="col-12 col-md-3">
-                <div style="background-image: url('images/banner-image.png');">
-                    <button class="btn btn-primary rounded-5 text-white w-auto">LATICÍNIOS</button>
-                </div>
-            </div>
+            @foreach (var category in categoriesHighlight!)
+            {
+                if(categoriesHighlight.First().Name == category.Name)
+                    category.setWidth("6");
+                else category.setWidth($"3");
+            
+                @await Component.InvokeAsync("CategoryCard", category)
+            }
         </div>
 
         <div class="mt-5 d-flex gap-3 flex-wrap justify-content-center">
