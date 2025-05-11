@@ -1,0 +1,20 @@
+@model MVC.Models.Product
+
+<div class="col">
+    <div class="card p-0 rounded-3 overflow-hidden" style="width: 18rem;">
+        <div class="card-img-top product-image"
+             style="background-image: url('images/product-placeholder.jpg')"></div>
+        <div class="card-body p-4">
+            <h5 class="fs-3 text-secondary-900 fw-bold mb-0">@Model.Name</h5>
+            <p class="card-text fs-6">@Model.Producer.Name</p>
+            <div class="d-flex justify-content-between align-items-center">
+                <h6 class="col-auto fs-2 text-primary my-0 fw-bold py-0">@Model.Price €</h6>
+                <button
+                    class="btn btn-primary rounded-circle d-flex align-items-center justify-content-center text-white p-0 fs-2 fw-bold"
+                    style="width: 48px; height: 48px;">
+                    +
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

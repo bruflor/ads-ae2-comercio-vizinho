@@ -1,11 +1,21 @@
 ﻿@{
     Layout = "_HomeLayout";
     ViewData["Title"] = "Comércio Vizinho";
-}
+    var products = ViewData["Products"] as IEnumerable<Product>;
+    var categories = ViewData["Categories"] as IEnumerable<Category>;
+    var categoriesHighlight = categories.Where(category => 
+        category.Name =="Desperdício zero" ||
+        category.Name == "Frutas" ||
+        category.Name == "Laticínios"
+        ).OrderBy(x => x.Name);
+    var standardCategories = categories.Where(c => 
+        !categoriesHighlight.Any(highlighted => highlighted.Id == c.Id)
+    );}
 
 <div>
     <header>
         <div class="bg-primary-900" style="height: 48px;"></div>
+
 
         <div class="container">
             <nav class="navbar navbar-expand-md py-5 justify-content-between">
@@ -42,85 +52,19 @@
         </div>
 
     </header>
-
+    
     @* Products *@
     <div class="container mt-5">
         <h2 class="text-center fw-bold text-secondary-900">Produtos</h2>
         <p class="text-center">Colheita da vizinhança. Alimentos cultivados com carinho na sua região</p>
 
+        
         <div class="row justify-content-start mt-5">
-            <div class="col">
-                <div class="card p-0 rounded-3 overflow-hidden" style="width: 18rem;">
-                    <div class="card-img-top product-image"
-                         style="background-image: url('images/product-placeholder.jpg')"></div>
-                    <div class="card-body p-4">
-                        <h5 class="fs-3 text-secondary-900 fw-bold mb-0">Product name</h5>
-                        <p class="card-text fs-6">Productor Tal</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h6 class="col-auto fs-2 text-primary my-0 fw-bold py-0">00,00 €</h6>
-                            <button
-                                class="btn btn-primary rounded-circle d-flex align-items-center justify-content-center text-white p-0 fs-2 fw-bold"
-                                style="width: 48px; height: 48px;">
-                                +
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div> 
-            <div class="col">
-                <div class="card p-0 rounded-3 overflow-hidden" style="width: 18rem;">
-                    <div class="card-img-top product-image"
-                         style="background-image: url('images/product-placeholder.jpg')"></div>
-                    <div class="card-body p-4">
-                        <h5 class="fs-3 text-secondary-900 fw-bold mb-0">Product name</h5>
-                        <p class="card-text fs-6">Productor Tal</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h6 class="col-auto fs-2 text-primary my-0 fw-bold py-0">00,00 €</h6>
-                            <button
-                                class="btn btn-primary rounded-circle d-flex align-items-center justify-content-center text-white p-0 fs-2 fw-bold"
-                                style="width: 48px; height: 48px;">
-                                +
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card p-0 rounded-3 overflow-hidden" style="width: 18rem;">
-                    <div class="card-img-top product-image"
-                         style="background-image: url('images/product-placeholder.jpg')"></div>
-                    <div class="card-body p-4">
-                        <h5 class="fs-3 text-secondary-900 fw-bold mb-0">Product name</h5>
-                        <p class="card-text fs-6">Productor Tal</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h6 class="col-auto fs-2 text-primary my-0 fw-bold py-0">00,00 €</h6>
-                            <button
-                                class="btn btn-primary rounded-circle d-flex align-items-center justify-content-center text-white p-0 fs-2 fw-bold"
-                                style="width: 48px; height: 48px;">
-                                +
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div> <div class="col">
-                <div class="card p-0 rounded-3 overflow-hidden" style="width: 18rem;">
-                    <div class="card-img-top product-image"
-                         style="background-image: url('images/product-placeholder.jpg')"></div>
-                    <div class="card-body p-4">
-                        <h5 class="fs-3 text-secondary-900 fw-bold mb-0">Product name</h5>
-                        <p class="card-text fs-6">Productor Tal</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h6 class="col-auto fs-2 text-primary my-0 fw-bold py-0">00,00 €</h6>
-                            <button
-                                class="btn btn-primary rounded-circle d-flex align-items-center justify-content-center text-white p-0 fs-2 fw-bold"
-                                style="width: 48px; height: 48px;">
-                                +
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-           
+            @foreach (var product in products!)
+            {
+                @await Component.InvokeAsync("ProductCard", product)
+            }
+            
         </div>
 
         <div class="row justify-content-center mt-5">
@@ -132,7 +76,6 @@
     @* Ads banner *@
     <div class="container ads-banner">
         <div class="col-12 col-md-6">
-
             <div class="highlight-box d-flex flex-column gap-4">
                 <div class="text-secondary w-100 d-flex justify-content-between">
                     <span class="fs-4">Promoções da Vizinhança</span>
@@ -150,6 +93,9 @@
     </div>
 
     @* Categories *@
+    
+
+
     <div class="container pb-5 mt-5">
         <div class="col-6 offset-md-3">
             <h2 class="text-center fw-bold text-secondary-900">Categorias</h2>
@@ -157,33 +103,30 @@
         </div>
 
         <div class="row mt-2 gx-3 category-cards">
-            <div class="col-12 col-md-6">
-                <div style="background-image: url('images/banner-image.png');">
-                    <button class="btn btn-primary rounded-5 text-white w-auto">DESPERDÍCIO ZERO</button>
-                </div>
-            </div>
-            <div class="col-12 col-md-3">
-                <div style="background-image: url('images/banner-image.png');">
-                    <button class="btn btn-primary rounded-5 text-white w-auto">FRUTAS</button>
-                </div>
-            </div>
-            <div class="col-12 col-md-3">
-                <div style="background-image: url('images/banner-image.png');">
-                    <button class="btn btn-primary rounded-5 text-white w-auto">LATICÍNIOS</button>
-                </div>
-            </div>
+            @foreach (var category in categoriesHighlight!)
+            {
+                if(categoriesHighlight.First().Name == category.Name)
+                    category.setWidth("6");
+                else category.setWidth($"3");
+            
+                @await Component.InvokeAsync("CategoryCard", category)
+            }
         </div>
 
         <div class="mt-5 d-flex gap-3 flex-wrap justify-content-center">
-            <button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">LEGUMES</button>
-            <button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">GRÃOS E CEREAIS</button>
-            <button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">CARNES E OVOS</button>
-            <button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">SUSTENTÁVEIS</button>
-            <button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">FARINHAS E MASSAS</button>
-            <button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">BEBIDAS</button>
-            <button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">ORGÂNICOS</button>
-            <button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">GELEIAS E DOCES</button>
-            <button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">SAZONAIS</button>
+            @foreach(var category in standardCategories!)
+            {
+                @await Component.InvokeAsync("CategoryChip", category)
+            }
+            @* <button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">LEGUMES</button> *@
+            @* <button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">GRÃOS E CEREAIS</button> *@
+            @* <button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">CARNES E OVOS</button> *@
+            @* <button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">SUSTENTÁVEIS</button> *@
+            @* <button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">FARINHAS E MASSAS</button> *@
+            @* <button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">BEBIDAS</button> *@
+            @* <button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">ORGÂNICOS</button> *@
+            @* <button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">GELEIAS E DOCES</button> *@
+            @* <button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">SAZONAIS</button> *@
         </div>
 
     </div>

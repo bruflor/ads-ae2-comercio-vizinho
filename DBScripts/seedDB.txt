@@ -1,0 +1,36 @@
+-- SELECT * FROM public."Users"
+
+-- CREATE EXTENSION IF NOT EXISTS pgcrypto;
+
+-- INSERT INTO "Users" ("Id","Name", "Email", "Password", "Status", "Role", "PhoneNumber")
+-- VALUES 
+-- (gen_random_uuid(),'John Doe', 'john.doe@example.com', crypt('Password123', gen_salt('bf')), 'Active', ARRAY['User'], '+15551234567'),
+-- (gen_random_uuid(),'Jane Smith', 'jane.smith@example.com', crypt('SecurePass456', gen_salt('bf')), 'Active', ARRAY['Admin'], '+15559876543'),
+-- (gen_random_uuid(),'Robert Johnson', 'robert.j@example.com', crypt('RobPass789', gen_salt('bf')), 'Inactive', ARRAY['User'], '+15554567890'),
+-- (gen_random_uuid(),'Emily Davis', 'emily.davis@example.com', crypt('EmilyPass321', gen_salt('bf')), 'Active', ARRAY['Editor'], '+15557891234'),
+-- (gen_random_uuid(),'Michael Wilson', 'm.wilson@example.com', crypt('MikePass654', gen_salt('bf')), 'Pending', ARRAY['User'], '+15552345678');
+
+-- SELECT * FROM public."Products"
+
+-- INSERT INTO "Products" ("Id", "Name",  "Price", "ProducerId", "CreatedAt")
+-- VALUES 
+-- (gen_random_uuid(), 'Pera da rocha', 125.32, '7d2e58a3-fc0f-451a-aad8-e11b32abe9d7', NOW() )
+-- (gen_random_uuid(), 'Couve lombarda', 12.32, '7d2e58a3-fc0f-451a-aad8-e11b32abe9d7', NOW() )
+
+-- SELECT * FROM public."Categories";
+-- 
+-- INSERT INTO "Categories" ("Id", "Name", "Description", "Status")
+-- VALUES
+-- -- (gen_random_uuid(), 'Frutas', 'Pronto! são tipo futras, NÃO! São mesmo Frutas', 'Ativo'),
+-- (gen_random_uuid(), 'Legumes', 'Pronto! são tipo futras, NÃO! São mesmo Frutas', 'Ativo'),
+-- (gen_random_uuid(), 'Desperdício zero', 'Pronto! são tipo desperdício zero, NÃO! São mesmo desperdícios zero', 'Ativo'),
+-- (gen_random_uuid(), 'Laticínios', 'Pronto! são tipo laticínios, NÃO! São mesmo laticínios', 'Ativo'),
+-- (gen_random_uuid(), 'Legumes', 'Pronto! são tipo legumes, NÃO! São mesmo legumes', 'Ativo'),
+-- (gen_random_uuid(), 'Grãos e cereais', 'Pronto! são tipo grãos e cereais, NÃO! São mesmo grãos e cereais', 'Ativo'),
+-- (gen_random_uuid(), 'Sustentáveis', 'Pronto! são tipo sustentáveis, NÃO! São mesmo sustentáveis', 'Ativo'),
+-- (gen_random_uuid(), 'Farinhas e massas', 'Pronto! são tipo farinhas e massas, NÃO! São mesmo farinhas e massas', 'Ativo'),
+-- (gen_random_uuid(), 'Bebidas', 'Pronto! são tipo bebidas, NÃO! São mesmo bebidas', 'Ativo'),
+-- (gen_random_uuid(), 'Orgânicos', 'Pronto! são tipo orgânicos, NÃO! São mesmo orgânicos', 'Ativo'),
+-- (gen_random_uuid(), 'Geleias e doces', 'Pronto! são tipo geleias e doces, NÃO! São mesmo geleias e doces', 'Ativo'),
+-- (gen_random_uuid(), 'Sazonais', 'Pronto! são tipo sazonais, NÃO! São mesmo sazonais', 'Ativo'),
+-- (gen_random_uuid(), 'Carnes e ovos', 'Pronto! são tipo carnes e ovos, NÃO! São mesmo carnes e ovos', 'Ativo');

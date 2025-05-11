@@ -11,3 +11,10 @@
   - Configuração do banco de dados em postgreSQL;
   - Construção da homepage estática;
   - Definição das seções;
+
+### 03 de Maio de 2025
+- 6 horas de trabalho do Wesley
+  - Configuração do bootstrap para caminhos relativos no projeto
+
+## 04 de Maio de 2025
+-
