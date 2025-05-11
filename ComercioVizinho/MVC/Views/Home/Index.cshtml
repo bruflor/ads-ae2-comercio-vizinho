@@ -17,7 +17,6 @@
     <header>
         <div class="bg-primary-900" style="height: 48px;"></div>
 
-
         <div class="container">
             <nav class="navbar navbar-expand-md py-5 justify-content-between">
                 <a href="#" class="col-3">
@@ -60,7 +59,7 @@
         <p class="text-center">Colheita da vizinhança. Alimentos cultivados com carinho na sua região</p>
 
         
-        <div class="row align-content-center mt-5 gy-2">
+        <div class="row align-content-center justify-content-center mt-5 gy-2">
             @foreach (var product in productsHighlighted!)
             {
                 @await Component.InvokeAsync("ProductCard", product)
