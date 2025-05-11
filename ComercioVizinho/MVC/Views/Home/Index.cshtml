@@ -8,8 +8,9 @@
         category.Name == "Frutas" ||
         category.Name == "Laticínios"
         ).OrderBy(x => x.Name);
-    
-}
+    var standardCategories = categories.Where(c => 
+        !categoriesHighlight.Any(highlighted => highlighted.Id == c.Id)
+    );}
 
 <div>
     <header>
@@ -113,15 +114,19 @@
         </div>
 
         <div class="mt-5 d-flex gap-3 flex-wrap justify-content-center">
-            <button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">LEGUMES</button>
-            <button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">GRÃOS E CEREAIS</button>
-            <button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">CARNES E OVOS</button>
-            <button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">SUSTENTÁVEIS</button>
-            <button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">FARINHAS E MASSAS</button>
-            <button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">BEBIDAS</button>
-            <button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">ORGÂNICOS</button>
-            <button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">GELEIAS E DOCES</button>
-            <button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">SAZONAIS</button>
+            @foreach(var category in standardCategories!)
+            {
+                @await Component.InvokeAsync("CategoryChip", category)
+            }
+            @* <button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">LEGUMES</button> *@
+            @* <button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">GRÃOS E CEREAIS</button> *@
+            @* <button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">CARNES E OVOS</button> *@
+            @* <button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">SUSTENTÁVEIS</button> *@
+            @* <button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">FARINHAS E MASSAS</button> *@
+            @* <button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">BEBIDAS</button> *@
+            @* <button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">ORGÂNICOS</button> *@
+            @* <button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">GELEIAS E DOCES</button> *@
+            @* <button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">SAZONAIS</button> *@
         </div>
 
     </div>

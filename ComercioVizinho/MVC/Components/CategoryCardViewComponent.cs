@@ -12,6 +12,14 @@ public class CategoryCardViewComponent : ViewComponent
     }
 }
 
+public class CategoryChipViewComponent : ViewComponent
+{
+    public IViewComponentResult Invoke(Category categories)
+    {
+        return View(categories);
+    }
+}
+
 public interface IWidth
 {
     void setWidth(string width);
