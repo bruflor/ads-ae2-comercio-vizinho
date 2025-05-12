@@ -1,9 +1,18 @@
+@model MVC.Models.Product
+
 @{
     ViewBag.Title = "Detail";
     Layout = "_Layout";
+    
 }
 
-<div class="container">
+<h2>@Model.Name</h2>
+<p>Price: @Model.Price</p>
 
-    <h2>Product page detail</h2>
-</div>
+<h3>Categories:</h3>
+<ul>
+    @foreach (var category in Model.Categories)
+    {
+        <li>@category.Name</li>
+    }
+</ul>
