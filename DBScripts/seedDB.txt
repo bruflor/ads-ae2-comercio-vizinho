@@ -14,15 +14,14 @@
 
 -- INSERT INTO "Products" ("Id", "Name",  "Price", "ProducerId", "CreatedAt")
 -- VALUES 
--- (gen_random_uuid(), 'Pera da rocha', 125.32, '7d2e58a3-fc0f-451a-aad8-e11b32abe9d7', NOW() )
--- (gen_random_uuid(), 'Couve lombarda', 12.32, '7d2e58a3-fc0f-451a-aad8-e11b32abe9d7', NOW() )
+-- (gen_random_uuid(), 'Pera da rocha', 125.32, '060d7ba3-d2b2-4f91-958c-00462c18f949', NOW() ),
+-- (gen_random_uuid(), 'Couve lombarda', 12.32, '14c20b1a-8575-40d5-9d38-4c7d6280e9ab', NOW() )
 
 -- SELECT * FROM public."Categories";
 -- 
 -- INSERT INTO "Categories" ("Id", "Name", "Description", "Status")
 -- VALUES
--- -- (gen_random_uuid(), 'Frutas', 'Pronto! são tipo futras, NÃO! São mesmo Frutas', 'Ativo'),
--- (gen_random_uuid(), 'Legumes', 'Pronto! são tipo futras, NÃO! São mesmo Frutas', 'Ativo'),
+-- (gen_random_uuid(), 'Frutas', 'Pronto! são tipo futras, NÃO! São mesmo Frutas', 'Ativo'),
 -- (gen_random_uuid(), 'Desperdício zero', 'Pronto! são tipo desperdício zero, NÃO! São mesmo desperdícios zero', 'Ativo'),
 -- (gen_random_uuid(), 'Laticínios', 'Pronto! são tipo laticínios, NÃO! São mesmo laticínios', 'Ativo'),
 -- (gen_random_uuid(), 'Legumes', 'Pronto! são tipo legumes, NÃO! São mesmo legumes', 'Ativo'),
@@ -33,4 +32,24 @@
 -- (gen_random_uuid(), 'Orgânicos', 'Pronto! são tipo orgânicos, NÃO! São mesmo orgânicos', 'Ativo'),
 -- (gen_random_uuid(), 'Geleias e doces', 'Pronto! são tipo geleias e doces, NÃO! São mesmo geleias e doces', 'Ativo'),
 -- (gen_random_uuid(), 'Sazonais', 'Pronto! são tipo sazonais, NÃO! São mesmo sazonais', 'Ativo'),
--- (gen_random_uuid(), 'Carnes e ovos', 'Pronto! são tipo carnes e ovos, NÃO! São mesmo carnes e ovos', 'Ativo');
+-- (gen_random_uuid(), 'Carnes e ovos', 'Pronto! são tipo carnes e ovos, NÃO! São mesmo carnes e ovos', 'Ativo')
+
+
+
+-- INSERT INTO "CategoryProduct" ("CategoriesId", "ProductsId")
+-- VALUES 
+    -- ((SELECT "Id" FROM "Categories" WHERE "Name" = 'Frutas'),
+    --  (SELECT "Id" FROM "Products" WHERE "Name" = 'Pera da rocha')),
+     
+    -- ((SELECT "Id" FROM "Categories" WHERE "Name" = 'Orgânicos'),
+    --  (SELECT "Id" FROM "Products" WHERE "Name" = 'Pera da rocha')),
+     
+-- Second product (Couve lombarda) associations
+    -- ((SELECT "Id" FROM "Categories" WHERE "Name" = 'Legumes'),
+    --  (SELECT "Id" FROM "Products" WHERE "Name" = 'Couve lombarda')),
+     
+    -- ((SELECT "Id" FROM "Categories" WHERE "Name" = 'Sustentáveis'),
+    --  (SELECT "Id" FROM "Products" WHERE "Name" = 'Couve lombarda')),
+     
+    -- ((SELECT "Id" FROM "Categories" WHERE "Name" = 'Desperdício zero'),
+    --  (SELECT "Id" FROM "Products" WHERE "Name" = 'Couve lombarda'));
