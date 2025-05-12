@@ -23,6 +23,21 @@ namespace MVC.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("CategoryProduct", b =>
+                {
+                    b.Property<Guid>("CategoriesId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("ProductsId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("CategoriesId", "ProductsId");
+
+                    b.HasIndex("ProductsId");
+
+                    b.ToTable("CategoryProduct");
+                });
+
             modelBuilder.Entity("MVC.Models.Category", b =>
                 {
                     b.Property<Guid>("Id")
@@ -36,15 +51,10 @@ namespace MVC.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Guid?>("ProductId")
-                        .HasColumnType("uuid");
-
                     b.Property<string>("Status")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
 
                     b.ToTable("Categories");
                 });
@@ -83,8 +93,8 @@ namespace MVC.Migrations
                     b.Property<Guid>("ProducerId")
                         .HasColumnType("uuid");
 
-                    b.Property<float?>("PromotionalPrice")
-                        .HasColumnType("real");
+                    b.Property<double?>("PromotionalPrice")
+                        .HasColumnType("double precision");
 
                     b.Property<int?>("StockLevel")
                         .HasColumnType("integer");
@@ -128,11 +138,19 @@ namespace MVC.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("MVC.Models.Category", b =>
+            modelBuilder.Entity("CategoryProduct", b =>
                 {
+                    b.HasOne("MVC.Models.Category", null)
+                        .WithMany()
+                        .HasForeignKey("CategoriesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("MVC.Models.Product", null)
-                        .WithMany("Categories")
-                        .HasForeignKey("ProductId");
+                        .WithMany()
+                        .HasForeignKey("ProductsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("MVC.Models.Product", b =>
@@ -144,11 +162,6 @@ namespace MVC.Migrations
                         .IsRequired();
 
                     b.Navigation("Producer");
-                });
-
-            modelBuilder.Entity("MVC.Models.Product", b =>
-                {
-                    b.Navigation("Categories");
                 });
 #pragma warning restore 612, 618
         }
