@@ -27,6 +27,8 @@ public class ProductController: Controller
 
         if (product == null)
         {
+            // TODO: HERE WOULD BE NICE TO REDIRECT TO OUR PAGE "NOT FOUND" AND NOT TO A NOT FOUND
+            // TODO: CREATE THE NOT FOUND PAGE
             return NotFound();
         }
 
