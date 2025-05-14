@@ -2,6 +2,7 @@
     ViewBag.Title = "Product";
     Layout = "_Layout";
     var products = ViewData["Products"] as IEnumerable<Product>;
+    var productsWithoutCategories = products.Where(p => p.Categories == null || !p.Categories.Any());
     var categories = ViewData["Categories"] as IEnumerable<Category>;
     
 }
@@ -26,4 +27,10 @@
         }
         
     }
+    <h2>Products with no categories</h2>
+    @foreach (var productsWithoutCategory in productsWithoutCategories)
+    {
+        <p>@productsWithoutCategory.Name</p>
+    }
+    
 </div>
