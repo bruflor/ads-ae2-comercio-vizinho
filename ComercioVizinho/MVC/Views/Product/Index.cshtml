@@ -14,7 +14,7 @@
     <hr/>
 </div>
 <div class="container-fluid d-flex mb-4">
-        <div class="p-2 flex-grow-1 bg-light-subtle">
+        <div class="p-2 bg-light-subtle flex-grow-1" style="max-width: 15%">
             <ul class="nav flex-column nav-pills">
                 <li class="nav-item">
                     <a class="nav-link active" href="#">Todos</a>
@@ -27,7 +27,7 @@
                 }
             </ul>
         </div>
-        <div class="bg-primary-100 col-8 p-4">
+        <div class="container mx-0 p-4">
             @foreach (var category in categories!)
             {
                 @if (category.Products != null && category.Products.Any())
@@ -45,4 +45,5 @@
                 }
             }
         </div>
+        <div class="flex-grow-1"></div>
 </div>
