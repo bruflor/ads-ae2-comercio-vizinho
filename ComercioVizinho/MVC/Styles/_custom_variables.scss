@@ -31,3 +31,6 @@ $custom-colors: (
 $theme-colors: map-merge($theme-colors,
         $custom-colors
 );
+
+$nav-pills-link-active-color:       $secondary-900;
+$nav-pills-link-active-bg:          $primary-500;

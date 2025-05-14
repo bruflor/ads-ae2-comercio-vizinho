@@ -4,33 +4,45 @@
     var products = ViewData["Products"] as IEnumerable<Product>;
     var productsWithoutCategories = products.Where(p => p.Categories == null || !p.Categories.Any());
     var categories = ViewData["Categories"] as IEnumerable<Category>;
-    
 }
 <div class="container">
-    
-    <h1>Product page</h1>
-   
-    @foreach (var category in categories!)
-    {
-        @if(category.Products != null && category.Products.Any())
-        {
-            <h2>@category.Name</h2>
-            <p>@category.Description</p>
-            <ul>
+    <h1 class="fw-bold text-secondary-900">Produtos</h1>
+    <p>Descubra a autenticidade dos nossos produtos, cultivados com dedicação pelos membros da nossa cooperativa. Do
+        campo para a sua mesa, oferecemos sabores genuínos que refletem o cuidado com a terra e o apoio à agricultura
+        local.</p>
 
-                @foreach (var product in category.Products)
+    <hr/>
+</div>
+<div class="container-fluid d-flex mb-4">
+        <div class="p-2 flex-grow-1 bg-light-subtle">
+            <ul class="nav flex-column nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Todos</a>
+                </li>
+                @foreach (var category in categories!)
                 {
-                    <li>@product.Name</li>
+                    <li class="nav-item ">
+                        <a class="nav-link text-secondary-900" href="#">@category.Name</a>
+                    </li>
                 }
             </ul>
-            <hr/>
-        }
-        
-    }
-    <h2>Products with no categories</h2>
-    @foreach (var productsWithoutCategory in productsWithoutCategories)
-    {
-        <p>@productsWithoutCategory.Name</p>
-    }
-    
+        </div>
+        <div class="bg-primary-100 col-8 p-4">
+            @foreach (var category in categories!)
+            {
+                @if (category.Products != null && category.Products.Any())
+                {
+                    <h2 class="text-primary-500 fs-3">@category.Name</h2>
+                    <p>@category.Description</p>
+
+                    <div class="row align-content-start justify-content-start mt-5 gy-2">
+                        @foreach (var product in category.Products)
+                        {
+                            @await Component.InvokeAsync("ProductCard", product)
+                        }
+                    </div>
+                    <hr/>
+                }
+            }
+        </div>
 </div>
