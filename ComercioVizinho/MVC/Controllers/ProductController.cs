@@ -15,7 +15,12 @@ public class ProductController: Controller
 
     public async Task<IActionResult> Index()
     {
-        ViewData["Products"] = await _context.Products.Include(p => p.Producer).ToListAsync();
+        
+        ViewData["Products"] = await _context.Products
+            .Include(p => p.Producer)
+            .Include(p => p.Categories)
+            .ToListAsync();
+        ViewData["Categories"] = await _context.Categories.Include(c => c.Products).ToArrayAsync();
         return View();
     }
 

@@ -21,7 +21,7 @@ public class HomeController : Controller
     public async Task<IActionResult> Index()
     {
         ViewData["Products"] = await _context.Products.Include(p => p.Producer).ToListAsync();
-        ViewData["Categories"] = await _context.Categories.ToArrayAsync();
+        ViewData["Categories"] = await _context.Categories.ToListAsync();
         
         return View();
     }

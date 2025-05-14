@@ -1,8 +1,29 @@
 @{
     ViewBag.Title = "Product";
     Layout = "_Layout";
+    var products = ViewData["Products"] as IEnumerable<Product>;
+    var categories = ViewData["Categories"] as IEnumerable<Category>;
+    
 }
 <div class="container">
     
-<h2>Product page</h2>
+    <h1>Product page</h1>
+   
+    @foreach (var category in categories!)
+    {
+        @if(category.Products != null && category.Products.Any())
+        {
+            <h2>@category.Name</h2>
+            <p>@category.Description</p>
+            <ul>
+
+                @foreach (var product in category.Products)
+                {
+                    <li>@product.Name</li>
+                }
+            </ul>
+            <hr/>
+        }
+        
+    }
 </div>
