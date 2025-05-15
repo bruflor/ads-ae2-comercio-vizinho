@@ -2,8 +2,10 @@
     ViewBag.Title = "Product";
     Layout = "_Layout";
     var products = ViewData["Products"] as IEnumerable<Product>;
-    var productsWithoutCategories = products.Where(p => p.Categories == null || !p.Categories.Any());
     var categories = ViewData["Categories"] as IEnumerable<Category>;
+    var categoryId = ViewData["CurrentCategoryId"] as Guid?;
+    var currentCategory = categories.FirstOrDefault(c => c.Id == categoryId);
+    var currentCategoryName = currentCategory != null ? currentCategory.Name : "Todos";
 }
 <div class="container">
     <h1 class="fw-bold text-secondary-900">Produtos</h1>
@@ -16,36 +18,36 @@
     <hr/>
 </div>
 <div class="container-fluid d-flex mb-4">
-        <div class="p-2 flex-grow-1" style="max-width: 15%">
-            <ul class="nav flex-column nav-pills">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">Todos</a>
-                </li>
-                @foreach (var category in categories!)
-                {
-                    <li class="nav-item ">
-                        <a class="nav-link text-secondary-900" href="#">@category.Name</a>
-                    </li>
-                }
-            </ul>
-        </div>
-        <div class="container mx-0 p-4">
+    <div class="p-2 flex-grow-1" style="max-width: 15%">
+        <ul class="nav flex-column nav-pills" asp-action="Index">
+            <li class="nav-item">
+                <a class="nav-link @(categoryId == null ? "active" : "text-secondary-900")"
+                   asp-action="Index"
+                   asp-route-categoryId="" >Todos</a>
+            </li>
+            
             @foreach (var category in categories!)
             {
-                @if (category.Products != null && category.Products.Any())
-                {
-                    <h2 class="text-primary-500 fs-3">@category.Name</h2>
-                    <p>@category.Description</p>
-
-                    <div class="row align-content-start justify-content-start mt-5 gy-2">
-                        @foreach (var product in category.Products)
-                        {
-                            @await Component.InvokeAsync("ProductCard", product)
-                        }
-                    </div>
-                    <hr/>
-                }
+                <li class="nav-item ">
+                    <a class="nav-link @(categoryId == category.Id ? "active" : "text-secondary-900")"
+                       asp-action="Index"
+                       asp-route-categoryId="@category.Id">@category.Name</a>
+                </li>
+            }
+        </ul>
+    </div>
+    
+    <div class="container mx-0 px-4">
+        <h2 class="text-primary-500 fs-3">
+            @currentCategoryName
+        </h2>
+        @* <p>@category.Description</p> *@
+        <div class="row align-content-start justify-content-start gy-2 my-4">
+            @foreach (var product in products!)
+            {
+                @await Component.InvokeAsync("ProductCard", product)
             }
         </div>
-        <div class="flex-grow-1"></div>
+    </div>
+    <div class="flex-grow-1"></div>
 </div>

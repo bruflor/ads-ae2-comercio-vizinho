@@ -1,10 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MVC.Data;
+using MVC.Models;
 
 namespace MVC.Controllers;
 
-public class ProductController: Controller
+public class ProductController : Controller
 {
     private readonly ComercioVizinhoDbContext _context;
 
@@ -13,21 +14,35 @@ public class ProductController: Controller
         _context = context;
     }
 
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(Guid? categoryId)
     {
-        
-        ViewData["Products"] = await _context.Products
-            .Include(p => p.Producer)
-            .Include(p => p.Categories)
-            .ToListAsync();
+        var products = new List<Product>();
+    
+        if (categoryId == null)
+        {
+            products = await _context.Products
+                .Include(p => p.Producer)
+                .ToListAsync();
+        }
+        else
+        {
+            products = await _context.Products
+                .Where(p => p.Categories.Any(c => c.Id == categoryId))
+                .Include(p => p.Producer)
+                .ToListAsync();
+        }
+   
         ViewData["Categories"] = await _context.Categories.Include(c => c.Products).ToArrayAsync();
+        ViewData["Products"] = products;
+        ViewData["CurrentCategoryId"] = categoryId; 
+    
         return View();
     }
 
     public async Task<IActionResult> Detail(Guid id)
     {
         var product = await _context.Products
-            .Include(x => x.Categories) 
+            .Include(x => x.Categories)
             .FirstOrDefaultAsync(x => x.Id == id);
 
         if (product == null)
@@ -37,6 +52,6 @@ public class ProductController: Controller
             return NotFound();
         }
 
-        return View(product); 
+        return View(product);
     }
 }
