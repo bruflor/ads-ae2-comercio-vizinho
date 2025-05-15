@@ -31,8 +31,8 @@ public class ProductController : Controller
                 .Include(p => p.Producer)
                 .ToListAsync();
         }
-   
-        ViewData["Categories"] = await _context.Categories.Include(c => c.Products).ToArrayAsync();
+
+        ViewData["Categories"] = await _context.Categories.OrderBy(c => c.Name).ToArrayAsync();
         ViewData["Products"] = products;
         ViewData["CurrentCategoryId"] = categoryId; 
     
