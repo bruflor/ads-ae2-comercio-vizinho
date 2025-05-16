@@ -19,7 +19,6 @@ public class Product
 
     public String? Description { get; set; }
     public DateOnly? ExpirationDate { get; set; }
-    public String? Photo { get; set; }
     public String? EnvironmentalImpact { get; set; }
     public Double? PromotionalPrice { get; set; }
 }
