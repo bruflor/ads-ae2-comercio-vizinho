@@ -13,12 +13,12 @@ VALUES
 
 SELECT * FROM public."Products"
 
-INSERT INTO "Products" ("Id", "Name",  "Price", "ProducerId", "CreatedAt")
+INSERT INTO "Products" ("Id", "Name",  "Price", "ProducerId", "CreatedAt", "ImagesUrl")
 VALUES 
-('37a58886-bdaf-4eb8-9945-6fa5002431cc', 'Pera da rocha', 125.32, 'c4605b5a-70a6-4109-b401-92d10902b3f5', NOW() ),
-('BA2970BE-0F33-4B4F-BFAB-5F499139045A', 'Couve lombarda', 12.32, 'c4605b5a-70a6-4109-b401-92d10902b3f5', NOW() ),
-('3C4B3545-D8D3-4698-8CE3-3812E5346306', 'Nesperinha amarelinha', 12.32, 'c4605b5a-70a6-4109-b401-92d10902b3f5', NOW() ),
-('FF09D855-C936-4B0E-AA32-A48B3307597D', 'Grelos grelados', 12.32, 'c4605b5a-70a6-4109-b401-92d10902b3f5', NOW() )
+('37a58886-bdaf-4eb8-9945-6fa5002431cc', 'Pera da rocha', 125.32, 'c4605b5a-70a6-4109-b401-92d10902b3f5', NOW() , ARRAY[]),
+('BA2970BE-0F33-4B4F-BFAB-5F499139045A', 'Couve lombarda', 12.32, 'c4605b5a-70a6-4109-b401-92d10902b3f5', NOW(), ARRAY['https://plus.unsplash.com/premium_photo-1661963465934-55eeb52f64d2?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 'https://images.unsplash.com/photo-1486328228599-85db4443971f?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D']),
+('3C4B3545-D8D3-4698-8CE3-3812E5346306', 'Nesperinha amarelinha', 12.32, 'c4605b5a-70a6-4109-b401-92d10902b3f5', NOW(), ARRAY[] ),
+('FF09D855-C936-4B0E-AA32-A48B3307597D', 'Grelos grelados', 12.32, 'c4605b5a-70a6-4109-b401-92d10902b3f5', NOW(), ARRAY[] )
 
 SELECT * FROM public."Categories";
 
@@ -55,3 +55,12 @@ VALUES
      
     ((SELECT "Id" FROM "Categories" WHERE "Name" = 'Desperdício zero'),
      (SELECT "Id" FROM "Products" WHERE "Name" = 'Couve lombarda'));
+
+
+-- update products
+SELECT * FROM "CVDb".public."Products";
+
+UPDATE "Products"
+SET "ImagesUrl" = ARRAY ['https://plus.unsplash.com/premium_photo-1661963465934-55eeb52f64d2?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 'https://images.unsplash.com/photo-1486328228599-85db4443971f?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D']
+FROM "Products" AS prd
+WHERE uuid_eq("Products"."Id",'BA2970BE-0F33-4B4F-BFAB-5F499139045A');
