@@ -30,7 +30,7 @@ public class ProductController : Controller
                 .Include(p => p.Producer);
         }
 
-        int pageSize = 3;
+        int pageSize = 12;
 
         ViewData["Categories"] = await _context.Categories.OrderBy(c => c.Name).ToArrayAsync();
         // ViewData["Products"] = ;
