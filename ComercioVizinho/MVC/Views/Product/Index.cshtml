@@ -1,8 +1,98 @@
+@model PaginatedList<Product>
+
 @{
     ViewBag.Title = "Product";
     Layout = "_Layout";
+    var categories = ViewData["Categories"] as IEnumerable<Category>;
+    var categoryId = ViewData["CurrentCategoryId"] as Guid?;
+    var currentCategory = categories.FirstOrDefault(c => c.Id == categoryId);
+    var currentCategoryName = currentCategory != null ? currentCategory.Name : "Todos";
 }
 <div class="container">
-    
-<h2>Product page</h2>
+    <h1 class="fw-bold text-secondary-900">Produtos</h1>
+    <p>Descubra a autenticidade dos nossos produtos, cultivados com dedicação pelos membros da nossa cooperativa. Do
+        campo para a sua mesa, oferecemos sabores genuínos que refletem o cuidado com a terra e o apoio à agricultura
+        local.</p>
+
+</div>
+<div class="container-fluid">
+    <hr/>
+</div>
+<div class="container-fluid d-flex py-5 mb-4">
+    <div class="p-2 flex-grow-1" style="max-width: 15%">
+        <ul class="nav flex-column nav-pills" asp-action="Index">
+            <li class="nav-item">
+                <a class="nav-link @(categoryId == null ? "active" : "text-secondary-900")"
+                   asp-action="Index"
+                   asp-route-categoryId="">Todos</a>
+            </li>
+
+            @foreach (var category in categories!)
+            {
+                <li class="nav-item ">
+                    <a class="nav-link @(categoryId == category.Id ? "active" : "text-secondary-900")"
+                       asp-action="Index"
+                       asp-route-categoryId="@category.Id">@category.Name</a>
+                </li>
+            }
+        </ul>
+    </div>
+
+    <div class="container mx-0 px-4">
+        <h2 class="text-primary-500 fs-3">
+            @currentCategoryName
+        </h2>
+        @* <p>@category.Description</p> *@
+        <div class="row align-content-start justify-content-start gy-2 my-4">
+            @if (Model != null)
+            {
+                @foreach (var product in Model)
+                {
+                    @await Component.InvokeAsync("ProductCard", product)
+                }
+            }
+            else
+            {
+                <p>Nenhum produto encontrado</p>
+            }
+        </div>
+
+
+        @{
+            var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+            var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+            var hasPagination = Model.TotalPages > 1;
+        }
+
+        @if (hasPagination)
+        {
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item @prevDisabled">
+                        <a class="page-link" aria-label="Previous" asp-action="Index"
+                           asp-route-pageNumber="@(Model.PageIndex - 1)"
+                        >
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    @foreach (var pageNumber in Enumerable.Range(1, Model.TotalPages))
+                    {
+                        <li class="page-item @(pageNumber == Model.PageIndex ? "active" : "")">
+                            <a class="page-link" asp-action="Index"
+                               asp-route-pageNumber="@(pageNumber)">
+                                @pageNumber
+                            </a>
+                        </li>
+                    }
+                    <li class="page-item">
+                        <a class="page-link @nextDisabled" aria-label="Next" asp-action="Index"
+                           asp-route-pageNumber="@(Model.PageIndex + 1)">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        }
+    </div>
+    <div class="flex-grow-1"></div>
 </div>
