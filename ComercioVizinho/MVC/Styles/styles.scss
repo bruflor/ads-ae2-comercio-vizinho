@@ -4,11 +4,24 @@
 //Bootstrap
 @import "../../node_modules/bootstrap/scss/bootstrap";
 
-*body{
+* body {
   background: tint-color($primary, 90%)
 }
 
-*{
+* {
   font-family: "Inter", sans-serif;
 }
 
+.main-menu {
+  &-item {
+    border-radius: 4px;
+    &.active {
+      background: $primary-100 !important;
+    }
+    
+    &:not(.active):hover{
+      background: tint-color($primary-100,60%) !important;
+    }
+    
+  }
+}
