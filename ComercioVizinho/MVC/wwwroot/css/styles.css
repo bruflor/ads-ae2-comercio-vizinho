@@ -12588,4 +12588,14 @@ textarea.form-control-lg {
   font-family: "Inter", sans-serif;
 }
 
+.main-menu-item {
+  border-radius: 4px;
+}
+.main-menu-item.active {
+  background: #B5DF89 !important;
+}
+.main-menu-item:not(.active):hover {
+  background: rgb(225.4, 242.2, 207.8) !important;
+}
+
 /*# sourceMappingURL=styles.css.map */
