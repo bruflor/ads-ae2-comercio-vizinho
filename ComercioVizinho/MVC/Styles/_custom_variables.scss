@@ -34,3 +34,23 @@ $theme-colors: map-merge($theme-colors,
 
 $nav-pills-link-active-color:       $secondary-900;
 $nav-pills-link-active-bg:          $primary-500;
+
+$pagination-color:                  var($secondary-700);
+$pagination-bg:                     'transparent';
+$pagination-border-radius:          $border-radius;
+$pagination-border-width:           $border-width;
+$pagination-margin-start:           ($pagination-border-width * -1);
+$pagination-border-color:           $gray-300;
+
+$pagination-focus-color:            var($secondary-500);
+$pagination-focus-bg:               $gray-200;
+$pagination-focus-box-shadow:       $input-btn-focus-box-shadow;
+$pagination-focus-outline:          0;
+
+$pagination-hover-color:            var($secondary-900);
+$pagination-hover-bg:               $gray-200;
+$pagination-hover-border-color:     $gray-300;
+
+$pagination-active-color:           $component-active-color;
+$pagination-active-bg:              $secondary-700;
+$pagination-active-border-color:    $pagination-active-bg;

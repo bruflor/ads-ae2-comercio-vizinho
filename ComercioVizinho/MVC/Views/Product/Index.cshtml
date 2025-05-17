@@ -1,7 +1,8 @@
+@model PaginatedList<Product>
+
 @{
     ViewBag.Title = "Product";
     Layout = "_Layout";
-    var products = ViewData["Products"] as IEnumerable<Product>;
     var categories = ViewData["Categories"] as IEnumerable<Category>;
     var categoryId = ViewData["CurrentCategoryId"] as Guid?;
     var currentCategory = categories.FirstOrDefault(c => c.Id == categoryId);
@@ -43,9 +44,9 @@
         </h2>
         @* <p>@category.Description</p> *@
         <div class="row align-content-start justify-content-start gy-2 my-4">
-            @if (products != null && products.Any())
+            @if (Model != null)
             {
-                @foreach (var product in products)
+                @foreach (var product in Model)
                 {
                     @await Component.InvokeAsync("ProductCard", product)
                 }
@@ -54,8 +55,32 @@
             {
                 <p>Nenhum produto encontrado</p>
             }
+            
 
         </div>
+
+
+        @{
+            var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+            var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+        }
+
+        <a asp-action="Index"
+           asp-route-sortOrder="@ViewData["CurrentSort"]"
+           asp-route-pageNumber="@(Model.PageIndex - 1)"
+           asp-route-currentFilter="@ViewData["CurrentFilter"]"
+           class="btn btn-default @prevDisabled">
+            Previous
+        </a>
+        <a asp-action="Index"
+           asp-route-sortOrder="@ViewData["CurrentSort"]"
+           asp-route-pageNumber="@(Model.PageIndex + 1)"
+           asp-route-currentFilter="@ViewData["CurrentFilter"]"
+           class="btn btn-default @nextDisabled">
+            Next
+        </a>
+
+
     </div>
     <div class="flex-grow-1"></div>
 </div>

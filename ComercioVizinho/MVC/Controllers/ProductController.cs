@@ -14,29 +14,29 @@ public class ProductController : Controller
         _context = context;
     }
 
-    public async Task<IActionResult> Index(Guid? categoryId)
+    public async Task<IActionResult> Index(Guid? categoryId, int? pageNumber=1)
     {
-        var products = new List<Product>();
-    
+        var products = from p in _context.Products select p;
+
         if (categoryId == null)
         {
-            products = await _context.Products
-                .Include(p => p.Producer)
-                .ToListAsync();
+            products = _context.Products
+                .Include(p => p.Producer);
         }
         else
         {
-            products = await _context.Products
+            products = _context.Products
                 .Where(p => p.Categories.Any(c => c.Id == categoryId))
-                .Include(p => p.Producer)
-                .ToListAsync();
+                .Include(p => p.Producer);
         }
 
+        int pageSize = 3;
+
         ViewData["Categories"] = await _context.Categories.OrderBy(c => c.Name).ToArrayAsync();
-        ViewData["Products"] = products;
-        ViewData["CurrentCategoryId"] = categoryId; 
-    
-        return View();
+        // ViewData["Products"] = ;
+        ViewData["CurrentCategoryId"] = categoryId;
+
+        return View(await PaginatedList<Product>.CreateAsync(products, pageNumber ?? 1, pageSize));
     }
 
     public async Task<IActionResult> Detail(Guid id)
