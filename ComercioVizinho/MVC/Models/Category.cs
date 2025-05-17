@@ -6,10 +6,11 @@ namespace MVC.Models;
 public class Category : IWidth
 {
     public Guid Id { get; set; }
-    public string Name { get; set; }
-    public string? Description { get; set; }
-    public string? Status { get; set; } = "draft";
+    public String Name { get; set; }
+    public String? Description { get; set; }
+    public String? Status { get; set; } = "draft";
     
+    public List<Product> Products { get; } = []; // skip navigations
     [NotMapped] private String Width { get; set; }
 
 

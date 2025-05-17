@@ -1,0 +1,81 @@
+@model MVC.Models.Product
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "_Layout";
+}
+
+<div class="container pb-5 mb-5">
+    @* FIX: THAT PART MUST BE VISIBLE ONLY WHEN USER IS LOGGED IN AND HAS PERMISSION TO EDIT THIS PRODUCT*@
+    @* <div class="actions mt-3 mb-5 d-flex justify-content-end p-0 g-"> *@
+    @*     <button class="btn btn-outline-danger d-flex align-items-center"> *@
+    @*         <span class="material-symbols-outlined">delete</span> *@
+    @*         Excluir *@
+    @*     </button> *@
+    @*     <button class="btn btn-outline-secondary-100  d-flex align-items-center"> *@
+    @*         <span class="material-symbols-outlined">edit</span> *@
+    @*         Editar *@
+    @*     </button> *@
+    @* </div> *@
+
+    <div class="row">
+    <div class="col-md-6 ">
+        <div class="bg-primary-100" style="border: 5px solid white; border-radius: 8px; min-height:300px">
+            <img src="@if (Model.ImagesUrl != null) { @Model.ImagesUrl.First() }" alt=""
+                 style="width: 100%; height: auto;">
+        </div>
+    <div class="mt-3 d-flex gap-2">
+        @if (Model.ImagesUrl != null)
+        {
+            @foreach (var image in Model.ImagesUrl)
+            {
+                <div style="width: 120px; height: 120px; overflow: hidden; border-radius:4px">
+                    <img src="@image" alt="" style="width: auto; height: 120px;">
+                </div>
+                }
+                }
+            </div>
+
+            </div>
+
+                <div class="col-md-6 d-flex flex-column" style="padding-left: 32px !important">
+                    <div class="d-flex justify-content-between align-items-center text-primary">
+                        <h1 class="fw-bold">@Model.Name</h1>
+                        <div class="btn material-symbols-outlined fs-2">heart_plus</div>
+                    </div>
+
+                    <div class="mt-3">
+                        <h3 class="fw-light">Descrição</h3>
+                        <p>Aqui deve ser apresentado a descrição do produto, pode ser um pouco long mas não pode ser
+                            muito, é
+                            bom apresentar as principais características do produto sem muita enrolação.</p>
+                    </div>
+
+                    <div class="mt-auto mb-0">
+                        <h6 class="mb-2 fw-light fs-6">Categories:</h6>
+                        <div class="d-flex gap-3 flex-wrap justify-content-start">
+                            @foreach (var category in Model.Categories!)
+                            {
+                                @await Component.InvokeAsync("CategoryChip", category)
+                            }
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center mt-3 justify-self-end mt-auto mb-0">
+                        <h3 class="d-flex align-items-center gap-1">
+                            <span class="material-symbols-outlined d-block fs-2 mr-3">sell</span>
+                            @Model.Price <span class="material-symbols-outlined">euro</span>
+                        </h3>
+                        <button class="btn btn-outline-primary ml-auto mr-0 d-flex align-items-center"
+                                style="font-size:32px; max-width:320px;">
+                            <span class="material-symbols-outlined" style="font-size:32px">shopping_bag</span>
+                            Comprar
+                        </button>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+        </div>

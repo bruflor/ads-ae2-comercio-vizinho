@@ -1,36 +1,66 @@
--- SELECT * FROM public."Users"
+--REMEMBER TO RUN BY BLOCK
+SELECT * FROM public."Users"
 
--- CREATE EXTENSION IF NOT EXISTS pgcrypto;
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
 
--- INSERT INTO "Users" ("Id","Name", "Email", "Password", "Status", "Role", "PhoneNumber")
--- VALUES 
--- (gen_random_uuid(),'John Doe', 'john.doe@example.com', crypt('Password123', gen_salt('bf')), 'Active', ARRAY['User'], '+15551234567'),
--- (gen_random_uuid(),'Jane Smith', 'jane.smith@example.com', crypt('SecurePass456', gen_salt('bf')), 'Active', ARRAY['Admin'], '+15559876543'),
--- (gen_random_uuid(),'Robert Johnson', 'robert.j@example.com', crypt('RobPass789', gen_salt('bf')), 'Inactive', ARRAY['User'], '+15554567890'),
--- (gen_random_uuid(),'Emily Davis', 'emily.davis@example.com', crypt('EmilyPass321', gen_salt('bf')), 'Active', ARRAY['Editor'], '+15557891234'),
--- (gen_random_uuid(),'Michael Wilson', 'm.wilson@example.com', crypt('MikePass654', gen_salt('bf')), 'Pending', ARRAY['User'], '+15552345678');
+INSERT INTO "Users" ("Id","Name", "Email", "Password", "Status", "Role", "PhoneNumber")
+VALUES 
+('c4605b5a-70a6-4109-b401-92d10902b3f5','John Doe', 'john.doe@example.com', crypt('Password123', gen_salt('bf')), 'Active', ARRAY['User'], '+15551234567'),
+('9af60bd4-061c-4e55-9767-2f27e64629f2','Jane Smith', 'jane.smith@example.com', crypt('SecurePass456', gen_salt('bf')), 'Active', ARRAY['Admin'], '+15559876543'),
+('c92abc5f-0d31-4238-af50-ce5bacd8399c','Robert Johnson', 'robert.j@example.com', crypt('RobPass789', gen_salt('bf')), 'Inactive', ARRAY['User'], '+15554567890'),
+('d8532a89-16fe-4677-a6ea-1f228719249a','Emily Davis', 'emily.davis@example.com', crypt('EmilyPass321', gen_salt('bf')), 'Active', ARRAY['Editor'], '+15557891234'),
+('6dba8792-d410-463e-8689-a306325176da','Michael Wilson', 'm.wilson@example.com', crypt('MikePass654', gen_salt('bf')), 'Pending', ARRAY['User'], '+15552345678');
 
--- SELECT * FROM public."Products"
+SELECT * FROM public."Products"
 
--- INSERT INTO "Products" ("Id", "Name",  "Price", "ProducerId", "CreatedAt")
--- VALUES 
--- (gen_random_uuid(), 'Pera da rocha', 125.32, '7d2e58a3-fc0f-451a-aad8-e11b32abe9d7', NOW() )
--- (gen_random_uuid(), 'Couve lombarda', 12.32, '7d2e58a3-fc0f-451a-aad8-e11b32abe9d7', NOW() )
+INSERT INTO "Products" ("Id", "Name",  "Price", "ProducerId", "CreatedAt", "ImagesUrl")
+VALUES 
+('37a58886-bdaf-4eb8-9945-6fa5002431cc', 'Pera da rocha', 125.32, 'c4605b5a-70a6-4109-b401-92d10902b3f5', NOW() , ARRAY['https://images.unsplash.com/photo-1542820242-a3699d4f2bfe?q=80&w=1738&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 'https://images.unsplash.com/photo-1514756331096-242fdeb70d4a?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 'https://images.unsplash.com/photo-1570115115003-6dd0b570d378?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D']),
+('BA2970BE-0F33-4B4F-BFAB-5F499139045A', 'Couve lombarda', 12.32, 'c4605b5a-70a6-4109-b401-92d10902b3f5', NOW(), ARRAY['https://plus.unsplash.com/premium_photo-1661963465934-55eeb52f64d2?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 'https://images.unsplash.com/photo-1486328228599-85db4443971f?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D']),
+('3C4B3545-D8D3-4698-8CE3-3812E5346306', 'Nesperinha amarelinha', 12.32, 'c4605b5a-70a6-4109-b401-92d10902b3f5', NOW(), ARRAY['https://images.unsplash.com/photo-1683734265411-b3fbf690612b?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'] ),
+('FF09D855-C936-4B0E-AA32-A48B3307597D', 'Grelos grelados', 12.32, 'c4605b5a-70a6-4109-b401-92d10902b3f5', NOW(), ARRAY['https://images.unsplash.com/photo-1597362925123-77861d3fbac7?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 'https://images.unsplash.com/photo-1557844352-761f2565b576?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'] )
 
--- SELECT * FROM public."Categories";
--- 
--- INSERT INTO "Categories" ("Id", "Name", "Description", "Status")
--- VALUES
--- -- (gen_random_uuid(), 'Frutas', 'Pronto! são tipo futras, NÃO! São mesmo Frutas', 'Ativo'),
--- (gen_random_uuid(), 'Legumes', 'Pronto! são tipo futras, NÃO! São mesmo Frutas', 'Ativo'),
--- (gen_random_uuid(), 'Desperdício zero', 'Pronto! são tipo desperdício zero, NÃO! São mesmo desperdícios zero', 'Ativo'),
--- (gen_random_uuid(), 'Laticínios', 'Pronto! são tipo laticínios, NÃO! São mesmo laticínios', 'Ativo'),
--- (gen_random_uuid(), 'Legumes', 'Pronto! são tipo legumes, NÃO! São mesmo legumes', 'Ativo'),
--- (gen_random_uuid(), 'Grãos e cereais', 'Pronto! são tipo grãos e cereais, NÃO! São mesmo grãos e cereais', 'Ativo'),
--- (gen_random_uuid(), 'Sustentáveis', 'Pronto! são tipo sustentáveis, NÃO! São mesmo sustentáveis', 'Ativo'),
--- (gen_random_uuid(), 'Farinhas e massas', 'Pronto! são tipo farinhas e massas, NÃO! São mesmo farinhas e massas', 'Ativo'),
--- (gen_random_uuid(), 'Bebidas', 'Pronto! são tipo bebidas, NÃO! São mesmo bebidas', 'Ativo'),
--- (gen_random_uuid(), 'Orgânicos', 'Pronto! são tipo orgânicos, NÃO! São mesmo orgânicos', 'Ativo'),
--- (gen_random_uuid(), 'Geleias e doces', 'Pronto! são tipo geleias e doces, NÃO! São mesmo geleias e doces', 'Ativo'),
--- (gen_random_uuid(), 'Sazonais', 'Pronto! são tipo sazonais, NÃO! São mesmo sazonais', 'Ativo'),
--- (gen_random_uuid(), 'Carnes e ovos', 'Pronto! são tipo carnes e ovos, NÃO! São mesmo carnes e ovos', 'Ativo');
+SELECT * FROM public."Categories";
+
+INSERT INTO "Categories" ("Id", "Name", "Description", "Status")
+VALUES
+('216c4328-b8fe-4fd5-8b75-5cf797697a55', 'Frutas', 'Pronto! são tipo futras, NÃO! São mesmo Frutas', 'Ativo'),
+('fc9b5b06-f4c8-4056-b5cf-179aa2576e01', 'Legumes', 'Pronto! são tipo legumes, NÃO! São mesmo legumes', 'Ativo'),
+('cc2f13b6-a85a-4a3c-9c52-168f8ef5ed9d', 'Desperdício zero', 'Pronto! são tipo desperdício zero, NÃO! São mesmo desperdícios zero', 'Ativo'),
+('c5112398-774f-45d1-a886-cf3840913e7e', 'Laticínios', 'Pronto! são tipo laticínios, NÃO! São mesmo laticínios', 'Ativo'),
+('c20afacc-9a2f-41ac-a755-2e11dab1acc8', 'Grãos e cereais', 'Pronto! são tipo grãos e cereais, NÃO! São mesmo grãos e cereais', 'Ativo'),
+('1f403858-42ee-40c8-b2d6-9109866f9d3c', 'Sustentáveis', 'Pronto! são tipo sustentáveis, NÃO! São mesmo sustentáveis', 'Ativo'),
+('7b256d19-dd21-4865-8644-158951993dab', 'Farinhas e massas', 'Pronto! são tipo farinhas e massas, NÃO! São mesmo farinhas e massas', 'Ativo'),
+('3227b533-fadf-47f8-a0aa-97441ac810ff', 'Bebidas', 'Pronto! são tipo bebidas, NÃO! São mesmo bebidas', 'Ativo'),
+('a33b25c6-ebf7-4da6-98bc-e27129bcf670', 'Orgânicos', 'Pronto! são tipo orgânicos, NÃO! São mesmo orgânicos', 'Ativo'),
+('90562c7c-c16b-4583-95eb-e904b457ef5f', 'Geleias e doces', 'Pronto! são tipo geleias e doces, NÃO! São mesmo geleias e doces', 'Ativo'),
+('d5179fad-3228-43cf-8179-d96cec72fd32', 'Sazonais', 'Pronto! são tipo sazonais, NÃO! São mesmo sazonais', 'Ativo'),
+('47ba7c91-972c-458b-bf2f-1563d0a341fb', 'Carnes e ovos', 'Pronto! são tipo carnes e ovos, NÃO! São mesmo carnes e ovos', 'Ativo');
+
+
+
+INSERT INTO "CategoryProduct" ("CategoriesId", "ProductsId")
+VALUES 
+    ((SELECT "Id" FROM "Categories" WHERE "Name" = 'Frutas'),
+     (SELECT "Id" FROM "Products" WHERE "Name" = 'Pera da rocha')),
+     
+    ((SELECT "Id" FROM "Categories" WHERE "Name" = 'Orgânicos'),
+     (SELECT "Id" FROM "Products" WHERE "Name" = 'Pera da rocha')),
+     
+    ((SELECT "Id" FROM "Categories" WHERE "Name" = 'Legumes'),
+     (SELECT "Id" FROM "Products" WHERE "Name" = 'Couve lombarda')),
+     
+    ((SELECT "Id" FROM "Categories" WHERE "Name" = 'Sustentáveis'),
+     (SELECT "Id" FROM "Products" WHERE "Name" = 'Couve lombarda')),
+     
+    ((SELECT "Id" FROM "Categories" WHERE "Name" = 'Desperdício zero'),
+     (SELECT "Id" FROM "Products" WHERE "Name" = 'Couve lombarda'));
+
+
+-- update products
+SELECT * FROM "CVDb".public."Products";
+
+UPDATE "Products"
+SET "ImagesUrl" = ARRAY ['https://plus.unsplash.com/premium_photo-1661963465934-55eeb52f64d2?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 'https://images.unsplash.com/photo-1486328228599-85db4443971f?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D']
+FROM "Products" AS prd
+WHERE uuid_eq("Products"."Id",'BA2970BE-0F33-4B4F-BFAB-5F499139045A');
