@@ -1,3 +1,3 @@
 @model MVC.Models.Category
 
-<button class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto">@Model.Name</button>
+<a class="btn btn-primary-100 rounded-5 text-secondary-900 w-auto" asp-controller="Product" asp-action="Index" asp-route-categoryId="@Model.Id">@Model.Name</a>

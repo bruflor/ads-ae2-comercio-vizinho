@@ -2,6 +2,7 @@
 
 <div class="col-12 col-md-@Model.getWidth()">
     <div style="background-image: url('images/banner-image.png');">
-        <button class="btn btn-primary rounded-5 text-white w-auto text-capitalize">@Model.Name</button>
+        <a asp-controller="Product" asp-action="Index" asp-route-categoryId="@Model.Id" class="btn btn-primary rounded-5 text-white w-auto text-capitalize">@Model.Name</a>
     </div>
 </div>
+
