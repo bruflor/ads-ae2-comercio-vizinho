@@ -1,20 +1,7 @@
-# ads-ae2-comercio-vizinho
+## Título 
 
-## Controle de tempo
+Desenvolver um Minimum viable product (MVP) de uma plataforma online, para incentivar o comércio circular para pequenos produtores. 
 
-### 26 de Abril de 2025 
-- 10 horas de trabalho em conjunto
-- Pair programming:
-  - Inicialização do projeto em aspnet.core
-  - Instalação das dependencias;
-  - Configuração do bootstrap com tema customizavel;
-  - Configuração do banco de dados em postgreSQL;
-  - Construção da homepage estática;
-  - Definição das seções;
+## Setor de Aplicação 
 
-### 03 de Maio de 2025
-- 6 horas de trabalho do Wesley
-  - Configuração do bootstrap para caminhos relativos no projeto
-
-## 04 de Maio de 2025
--
+A aplicação será desenvolvida para atender os cooperados, e consumidores da cooperativa agrícola de Alcobaça, do município de Alcobaça, Leiria – Portugal, que é composta por pequenos produtores agrícolas da região. 
